@@ -1,5 +1,6 @@
 h, w = map(int, input().split())
 s = []
+
 for i in range(h):
     s.append(list(input()))
 
