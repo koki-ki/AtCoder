@@ -15,9 +15,9 @@ elif b < a < c:
     print(3)
     print(1)
 elif b < c < a:
-    print(2)
     print(1)
     print(3)
+    print(2)
 elif c < a < b:
     print(2)
     print(1)
