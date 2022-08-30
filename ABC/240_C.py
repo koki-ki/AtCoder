@@ -7,16 +7,13 @@ for i in range(n):
     b.append(b_)
 
 # dp[i][j]: i回ジャンプした後に地点jにいることは可能か
-dp = [[0] * (10 ** 4 + 1) for _ in range(n + 2)]
-dp[1][a[1]] = 1
-dp[1][b[1]] = 1
-for i in range(1, n + 1):
-    for j in range(x):
+dp = [[0] * (10 ** 4 + 1) for _ in range(n + 1)]
+dp[0][0] = 1
+for i in range(n):
+    for j in range(10 ** 4 + 1):
         if dp[i][j] == 1:
-            dp[i + 1][j + a[i]] = 1
-            dp[i + 1][j + b[i]] = 1
+            dp[i + 1][j + a[i + 1]] = 1
+            dp[i + 1][j + b[i + 1]] = 1
 
-if dp[n + 1][x] == 1:
-    print('Yes')
-else:
-    print('No')
+if dp[n][x] == 1: print('Yes')
+else: print('No')
