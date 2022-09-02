@@ -1,27 +1,8 @@
 n = int(input())
-p = [0, 0]
-p.extend(list(map(int, input().split())))
-
-for i in range(n + 1):
-    # print(i)
-    if p[i] == 1:
-        one = i
-
-#
-# print(one)
+p = [0, 0] + list(map(int, input().split()))
 cnt = 0
-i = one
-
-while True:
-    for j in range(n + 1):
-        if i == p[j]:
-            i = j
-            break
+now = n
+while now != 1:
     cnt += 1
-
-    if i == n:
-        break
-
-print(cnt + 1)
-
-
+    now = p[now]
+print(cnt)

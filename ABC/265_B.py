@@ -2,18 +2,17 @@ n, m, t = map(int, input().split())
 a = [0] + list(map(int, input().split()))
 bonus = [0] * (n + 1)
 
-for i in range(m):
-    x_, y_ = map(int, input().split())
-    bonus[x_] = y_
+for _ in range(m):
+    x, y = map(int, input().split())
+    bonus[x] = y
 
-bonus_index = 0
-
+j = 0
 for i in range(1, n):
-    t -= a[i]
-
-    if t < 0:
+    if t > a[i]:
+        t -= a[i]
+        t += bonus[i + 1]
+    else:
         print('No')
         exit()
-    t += bonus[i + 1]
 
 print('Yes')
