@@ -21,5 +21,3 @@ if x > n or y > n:
         print(*cnts[i])
     exit()
 
-4
-
