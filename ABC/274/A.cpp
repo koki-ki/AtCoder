@@ -7,4 +7,5 @@ int main() {
     ll a, b;
     cin >> a >> b;
     cout << fixed << setprecision(3) << (double)b / (double)a << endl;
+    return 0;
 }
