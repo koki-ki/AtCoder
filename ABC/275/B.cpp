@@ -21,8 +21,14 @@ const ll INF = 2000000000;
 #define rep2(i, s, n) for (ll i = s; i < (ll)n; i++)
 
 int main() {
-    ll a, b, c, d, e, f;
-    cin >> a >> b >> c >> e >> e >> f;
-    ll ans = ((a * b * c) - (d * e * f) + MOD) % MOD;
+    const ll p = 998244353;
+    vl a(6);
+    rep(i, 6) {
+        cin >> a[i];
+        a[i] %= p;
+    }
+    ll abc = a[0] * a[1] % p * a[2] % p;
+    ll def = a[3] * a[4] % p * a[5] % p;
+    ll ans = (abc - def + p) % p;
     cout << ans << endl;
 }
