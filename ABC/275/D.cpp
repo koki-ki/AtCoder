@@ -2,6 +2,7 @@
 using namespace std;
 /* alias */
 using ll = long long;
+using ull = unsigned long long;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 using vi = vector<int>;
@@ -12,7 +13,6 @@ using Graph = vector<vector<ll>>;
 
 const ll MOD = 1000000007;
 const ll INF = 2000000000;
-
 /* define short */
 #define pb push_back
 #define mp make_pair
@@ -21,23 +21,18 @@ const ll INF = 2000000000;
 #define rep(i, n) for (ll i = 0; i < (ll)n; i++)
 #define rep2(i, s, n) for (ll i = s; i < (ll)n; i++)
 
+vector<ll> memo;
+
+ll rec(ll n) {
+    if (n == 0) return 1;
+    if (memo[n] != -1) return memo[n];
+    return memo[n] = rec(n / 2) + rec(n / 3);
+}
+
 int main() {
     ll n;
     cin >> n;
-    vl a(n);
-    rep(i, n) cin >> a[i];
-    ll q;
-    cin >> q;
-    vl b(q);
-    rep(i, q) cin >> b[i];
-
-    sort(a.begin(), a.end());
-    rep(i, q) {
-        auto pos = lower_bound(a.begin(), a.end(), b[i]);
-        ll it = distance(a.begin(), pos);
-        ll Diff1 = INF, Diff2 = INF;
-        if (it <= n - 1) Diff1 = abs(b[i] - a[it]);
-        if (it >= 1) Diff2 = abs(b[i] - a[it - 1]);
-        cout << min(Diff1, Diff2) << endl;
-    }
+    memo.assign(n + 1, -1);
+    ll ans = rec(n);
+    cout << ans << endl;
 }
