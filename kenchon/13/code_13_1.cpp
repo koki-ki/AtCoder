@@ -12,7 +12,6 @@ using Graph = vector<vector<ll>>;
 
 const ll MOD = 1000000007;
 const ll INF = 2000000000;
-
 /* define short */
 #define pb push_back
 #define mp make_pair
@@ -21,23 +20,25 @@ const ll INF = 2000000000;
 #define rep(i, n) for (ll i = 0; i < (ll)n; i++)
 #define rep2(i, s, n) for (ll i = s; i < (ll)n; i++)
 
-int main() {
-    ll n;
-    cin >> n;
-    vl a(n);
-    rep(i, n) cin >> a[i];
-    ll q;
-    cin >> q;
-    vl b(q);
-    rep(i, q) cin >> b[i];
+// 幅優先探索
+void search(const Graph &G, ll s) {
+    ll n = (ll)G.size();
 
-    sort(a.begin(), a.end());
-    rep(i, q) {
-        auto pos = lower_bound(a.begin(), a.end(), b[i]);
-        ll it = distance(a.begin(), pos);
-        ll Diff1 = INF, Diff2 = INF;
-        if (it <= n - 1) Diff1 = abs(b[i] - a[it]);
-        if (it >= 1) Diff2 = abs(b[i] - a[it - 1]);
-        cout << min(Diff1, Diff2) << endl;
+    vector<bool> seen(n, false);
+    queue<ll> todo;
+    seen[s] = true;
+    todo.push(s);
+
+    while (!todo.empty()) {
+        ll v = todo.front();
+        todo.pop();
+
+        for (ll x : G[v]) {
+            if (seen[x]) continue;
+            seen[x] = true;
+            todo.push(x);
+        }
     }
 }
+
+int main() {}
