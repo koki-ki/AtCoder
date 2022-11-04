@@ -9,10 +9,10 @@ using vl = vector<ll>;
 using vvl = vector<vector<ll>>;
 using vs = vector<string>;
 using Graph = vector<vector<ll>>;
+using pll = pair<ll, ll>;
 
 const ll MOD = 1000000007;
 const ll INF = 2000000000;
-
 /* define short */
 #define pb push_back
 #define mp make_pair
@@ -26,18 +26,13 @@ int main() {
     cin >> n;
     vl a(n);
     rep(i, n) cin >> a[i];
-    ll q;
-    cin >> q;
-    vl b(q);
-    rep(i, q) cin >> b[i];
-
-    sort(a.begin(), a.end());
-    rep(i, q) {
-        auto pos = lower_bound(a.begin(), a.end(), b[i]);
-        ll it = distance(a.begin(), pos);
-        ll Diff1 = INF, Diff2 = INF;
-        if (it <= n - 1) Diff1 = abs(b[i] - a[it]);
-        if (it >= 1) Diff2 = abs(b[i] - a[it - 1]);
-        cout << min(Diff1, Diff2) << endl;
+    rep2(k, 1, n) {
+        ll pos = k;
+        while (pos != 0 && a[pos - 1] > a[pos]) {
+            swap(a[pos - 1], a[pos]);
+            pos--;
+        }
+        rep(i, n) cout << a[i] << " ";
+        cout << endl;
     }
 }

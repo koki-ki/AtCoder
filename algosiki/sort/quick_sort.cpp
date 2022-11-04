@@ -9,10 +9,10 @@ using vl = vector<ll>;
 using vvl = vector<vector<ll>>;
 using vs = vector<string>;
 using Graph = vector<vector<ll>>;
+using pll = pair<ll, ll>;
 
 const ll MOD = 1000000007;
 const ll INF = 2000000000;
-
 /* define short */
 #define pb push_back
 #define mp make_pair
@@ -21,23 +21,31 @@ const ll INF = 2000000000;
 #define rep(i, n) for (ll i = 0; i < (ll)n; i++)
 #define rep2(i, s, n) for (ll i = s; i < (ll)n; i++)
 
+void quick_sort(vl &v) {
+    if (!v.size()) return;
+    vl L, R;
+    ll x = v.size() / 2;
+    rep(i, v.size()) {
+        if (i == x) continue;
+        if (v[i] < v[x])
+            L.pb(v[i]);
+        else
+            R.pb(v[i]);
+    }
+    quick_sort(L);
+    quick_sort(R);
+
+    L.push_back(v[x]);
+    L.insert(L.end(), R.begin(), R.end());
+    v = L;
+}
+
 int main() {
     ll n;
     cin >> n;
     vl a(n);
     rep(i, n) cin >> a[i];
-    ll q;
-    cin >> q;
-    vl b(q);
-    rep(i, q) cin >> b[i];
-
-    sort(a.begin(), a.end());
-    rep(i, q) {
-        auto pos = lower_bound(a.begin(), a.end(), b[i]);
-        ll it = distance(a.begin(), pos);
-        ll Diff1 = INF, Diff2 = INF;
-        if (it <= n - 1) Diff1 = abs(b[i] - a[it]);
-        if (it >= 1) Diff2 = abs(b[i] - a[it - 1]);
-        cout << min(Diff1, Diff2) << endl;
-    }
+    quick_sort(a);
+    rep(i, a.size()) cout << a[i] << " ";
+    cout << endl;
 }
