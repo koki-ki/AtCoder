@@ -1,18 +1,26 @@
+import heapq
+from collections import defaultdict
+
+mx = []
+mn = []
+cnt = defaultdict(int)
+
 q = int(input())
+for _ in range(q):
+    query = list(map(int, input().split()))
+    if query[0] == 1:
+        x = query[1]
+        cnt[x] += 1
+        heapq.heappush(mx, -x)
+        heapq.heappush(mn, x)
 
-max_list = []
-min_list = []
+    if query[0] == 2:
+        x, c = query[1:]
+        cnt[x] = max(0, cnt[x]-c)
 
-for i in range(q):
-    line = input().split()
-    if len(line) == 2:
-        num, x = line[0], int(line[1])
-        for i in range(num):
-
-    elif len(line) == 3:
-        num, x, c = line[0], int(line[1]), int(line[2])
-
-
-    elif len(line) == 1:
-
-        print(ans)
+    if query[0] == 3:
+        while cnt[-mx[0]] == 0:
+            heapq.heappop(mx)
+        while cnt[mn[0]] == 0:
+            heapq.heappop(mn)
+        print(-mx[0]-mn[0])
