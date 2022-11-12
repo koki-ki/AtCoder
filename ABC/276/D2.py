@@ -24,3 +24,4 @@ for i in range(n):
     ans += two[i] - m2
     ans += three[i] - m3
 print(ans)
+
