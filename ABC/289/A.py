@@ -1,0 +1,5 @@
+s = input()
+s = s.replace('0', '3')
+s = s.replace('1', '0')
+s = s.replace('3', '1')
+print(s)
