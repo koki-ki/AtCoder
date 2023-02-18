@@ -1,26 +1,16 @@
-import numpy as np
 n, q = map(int, input().split())
+val = [i for i in range(n + 1)]
+pos = [i for i in range(n + 1)]
 
-a = list(np.arange(1, n+1))
-b = list(np.arange(0, n))
-
-x = []
-for i in range(n):
-    x.append(int(input()) - 1)
-
-print(a)
-for i in range(n):
-    a1 = a[b[x[i] - 1] - 1]
-    a2 = a[b[x[i] - 1] % n]
-    b1 = b[x[i] - 1]
-    b2 = b[a[b[x[i] - 1]] - 1]
-    a[b[x[i] - 1] - 1] = a2
-    a[b[x[i] - 1]] = a1
-    b[x[i] - 1] = b2
-    b[a[b[x[i] - 1]] - 1] = b1
-    print(a)
-print(a)
-
-
-
-
+for _ in range(q):
+    x = int(input())
+    px = pos[x]
+    if px == n:
+        pn = px - 1
+    else:
+        pn = px + 1
+    vx = val[px]
+    vn = val[pn]
+    val[px], val[pn] = val[pn], val[px]
+    pos[vx], pos[vn] = pos[vn], pos[vx]
+print(*val[1:])
