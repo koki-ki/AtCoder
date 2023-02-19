@@ -23,28 +23,23 @@ class UnionFind:
     def same(self, u, v):
         return self.root(u) == self.root(v)
 
-# main
-n = int(input())
+# -- main --
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
 uf = UnionFind(n)
-
-x = []
-y = []
-for _ in range(n):
-    xi, yi = map(int, input().split())
-    x.append(xi)
-    y.append(yi)
+for _ in range(m):
+    c, d = map(lambda x: int(x) - 1, input().split())
+    uf.unite(c, d)
+sum_a = [0 for _ in range(n)]
+sum_b = [0 for _ in range(n)]
 
 for i in range(n):
-    x1, y1 = x[i], y[i]
-    for j in range(i, n):
-        x2, y2 = x[j], y[j]
-        if(max(abs(x1 - x2), abs(y1 - y2)) == 1) and (y1 - y2) != - (x1 - x2):
-            uf.unite(i, j)
+    x = uf.root(i)
+    sum_a[x] += a[i]
+    sum_b[x] += b[i]
 
-memo = set()
-for i in range(n):
-    r = uf.root(i)
-    if r not in memo:
-        memo.add(r)
-
-print(len(memo))
+if sum_a == sum_b:
+    print("Yes")
+else:
+    print("No")
