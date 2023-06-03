@@ -1,5 +1,8 @@
 a, b = map(int, input().split())
+
 if a % b == 0:
-    print(a // b)
+    ans = a // b
 else:
-    print(a // b + 1)
+    ans = a // b + 1
+
+print(ans)

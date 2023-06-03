@@ -17,11 +17,7 @@ for i in permutations(s):
                 cnt += 1
 
         if cnt != 1:
-            ok = False
-            break
-
-    if ok:
-        print('Yes')
-        exit()
+            print('Yes')
+            exit()
 
 print('No')
