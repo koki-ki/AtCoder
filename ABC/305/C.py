@@ -23,5 +23,4 @@ for i in range(1, h + 1):
             ans_j = j
             break
 
-
 print(ans_i, ans_j)
