@@ -26,14 +26,15 @@ class UnionFind:
 
 def query1(px, py):
     px, py = px - 1, py - 1
-    hash1 = px*w + py
+    hash1 = px * w + py
     painted[hash1] = True
+
     dx = [1, 0, -1, 0]
     dy = [0, 1, 0, -1]
     for ddx, ddy in zip(dx, dy):
         qx = px + ddx
         qy = py + ddy
-        hash2 = qx*w + qy
+        hash2 = qx * w + qy
         if 0 <= hash2 < h * w:
             if painted[hash2]:
                 uf.unite(hash1, hash2)
